@@ -1,50 +1,75 @@
 <?php
+// classes in php
+class Books{
+    /* Member Variables */
+    var $price;
+    var $title;
 
-$server = "localhost";
-$username = "root";
-$password = "";
-$db = "ticket_management_system";
+    /* Constructor function */
+    function __construct($title, $price){
+        $this->title = $title;
+        $this->price = $price;
+    }
 
-$conn = new mysqli($server,$username, $password, $db);
+    /* Member functions */
+    function setPrice($price){
+        $this->price = $price;
+    }
 
-$query = "Select * FROM users";
-$result = $conn->query($query);
+    function getPrice(){
+        echo $this->price."<br/>";
+    }
 
+    function setTitle($title){
+        $this->title = $title;
+    }
 
-echo "Users Table<br>";
-if ($result->num_rows>0){
-    while ($row = $result->fetch_assoc()){
-        var_dump($row);
-        echo "<br>";
+    function getTitle(){
+        echo $this->title."<br>";
     }
 }
 
-echo "-----------------------------------------------------------------------------------------------------------<br>";
-echo "Tickets table<br>";
+$physics = new Books("ola",23);
+$maths = new Books("tash",0);
+$chemistry = new Books("chaimestery",234);
 
-$query = "Select * FROM tickets";
+$physics->setTitle("Physics for high school");
+$maths->setTitle("Algebra");
+$chemistry->setTitle("Al chemyat");
 
-$result = $conn->query($query);
-if ($result->num_rows>0){
-    while ($row = $result->fetch_assoc()){
-        var_dump($row);
-        echo"<br>";
+$physics->setPrice(102);
+$maths->setPrice(23);
+$chemistry->setPrice(40);
+
+$physics->getTitle();
+$physics->getPrice();
+
+$maths->getTitle();
+$maths->getPrice();
+
+$chemistry->getTitle();
+$chemistry->getPrice();
+
+$chemistry->title = "hello";
+$chemistry->getTitle();
+
+/* Gaming Books class extended from Books class */
+echo "<br>";
+class GamingBooks extends Books{
+    var $publisher;
+    function setPublisher($publisher){
+        $this->publisher = $publisher;
+    }
+
+    function getPublisher(){
+        echo $this->publisher."<br />";
     }
 }
+
+$assassinBook = new GamingBooks("Ezio Series", 1000);
+$assassinBook->setPublisher("Auditore");
+
+$assassinBook->getTitle();
+$assassinBook->getPrice();
+$assassinBook->getPublisher();
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>
-
-
-<!DOCTYPE 
